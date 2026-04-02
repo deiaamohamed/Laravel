@@ -2,75 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+
 use function Laravel\Prompts\alert;
 
 class Postcontroller extends Controller
 {
     //
     public function index(){
-         $posts=[
-            [
-            'id'=>1,
-            'name'=>'deiaa',
-            'Major'=> 'FullStack Developer'],
-            [
-            'id'=>2,
-            'name'=>'haneen',
-            'Major'=> 'Deep learning Engineer'],
-            [
-            'id'=>3,
-            'name'=>'Ahmed',
-            'Major'=> 'BIM Manager'],
-            
-        ];
+      $posts=Post::all();
+
+  
         return view('details',compact('posts')) ;
     }
     public function show($id){
-          $posts=[
-            [
-            'id'=>1,
-            'name'=>'deiaa',
-            'Major'=> 'FullStack Developer'],
-            [
-            'id'=>2,
-            'name'=>'haneen',
-            'Major'=> 'Deep learning Engineer'],
-            [
-            'id'=>3,
-            'name'=>'Ahmed',
-            'Major'=> 'BIM Manager'],
-            
-        ];
-        $choosen=[];
-        for ($i = 0; $i < count($posts); $i++){
-                if($posts[$i]['id']==$id){
-                    $choosen= $posts[$i];
-                    break;
-                }    
-        }
+         
+        $post=Post::find($id);
     
-    return view('posts',compact("choosen")) ;
+    return view('posts',compact("post")) ;
     }
     public function create(){
-        return view("create_post");
+        $user=User::all();
+        return view("create_post",compact("user"));
     }
     public function store(request $request){
+            //dd( $request->all());
+            $request->validate([
+                "name"=> ["required","min:3"],
+                "post"=>["required","min:5"],
+            ]);
+            $post=new Post();
+            $post->title=$request->name;
+            $post->post= $request->post;
+            $post->user_id=$request->u_id;
+             $post->save();
             return redirect('/posts');
         }
-        public function edit(){
-            $post=[
-                "id"=> 1,
-                "name"=> "deiaa",
-                "post"=>"i want to sleep :("
-            ];
+        public function edit($id){
+           $post=Post::find($id);
             return view("update_post",compact("post"));
         }
-        public function update(){
-            echo "updated";
+        public function update(Request $request){
+                $post=Post::find($request->id);
+                $post->title=$request->name;
+                $post->post= $request->post;
+                $post->save();
+                return redirect("/posts");
             }
             public function destroy($id){
-                return redirect("/post/{$id}");
+                $post=Post::find($id);
+                $post->delete();
+                return redirect("/posts");
             }
             
 
