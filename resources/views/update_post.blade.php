@@ -3,10 +3,12 @@
 <form action="/posts" method="POST" class="p-8 space-y-4 max-w-md">
     @csrf
     @method('put')
+<input hidden type="text" id="id" name="id" class="mt-0.5 w-full rounded border-gray-300 pe-10 shadow-sm sm:text-sm" value="{{ $post['id'] }}">
+
     <label for="name" class="block">
         <span class="text-sm font-medium text-gray-700">Name</span>
         <div class="relative">
-            <input type="text" id="name" name="name" class="mt-0.5 w-full rounded border-gray-300 pe-10 shadow-sm sm:text-sm" value="{{ $post['name'] }}">
+            <input type="text" id="name" name="name" class="mt-0.5 w-full rounded border-gray-300 pe-10 shadow-sm sm:text-sm" value="{{ $post['title'] }}">
         </div>
     </label>
 
