@@ -19,5 +19,22 @@
     <p class="mt-2 text-sm text-pretty">
         {{ $post['post'] }}
     </p>
+ <div class="mt-4 flex flex-wrap gap-2">
+    <p class="inline-flex items-center rounded-full border-2 border-black bg-white px-3 py-1 text-xs font-bold text-black">
+        <span class="mr-2 flex items-center gap-1.5">
+            <span class="size-2 rounded-full border border-black bg-red-500"></span>
+            <span class="uppercase tracking-tight">Created:</span>
+        </span>
+        {{ $post->created_at->diffForHumans() }}
+    </p>
+
+    <p class="inline-flex items-center rounded-full border-2 border-black bg-white px-3 py-1 text-xs font-bold text-black">
+        <span class="mr-2 flex items-center gap-1.5">
+            <span class="size-2 rounded-full border border-black bg-cyan-400"></span>
+            <span class="uppercase tracking-tight">Updated:</span>
+        </span>
+        {{ $post->updated_at->diffForHumans() }}
+    </p>
+</div>
   </div>
 </article>

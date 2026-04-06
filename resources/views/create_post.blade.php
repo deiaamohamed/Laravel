@@ -25,3 +25,15 @@
         Add Post
     </button>
 </form>
+@if($errors->any())
+        
+   
+<div class="p-4 mb-4 text-sm text-red-800 rounded-md bg-red-100" role="alert">          
+     @foreach($errors->all() as $err)
+
+                 <span class="font-medium">{{ $err }}</span><br>
+
+        @endforeach
+</div>
+
+@endif

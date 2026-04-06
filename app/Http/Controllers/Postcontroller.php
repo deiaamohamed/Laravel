@@ -12,7 +12,7 @@ class Postcontroller extends Controller
 {
     //
     public function index(){
-      $posts=Post::all();
+      $posts=Post::paginate(10);
 
   
         return view('details',compact('posts')) ;
@@ -30,8 +30,8 @@ class Postcontroller extends Controller
     public function store(request $request){
             //dd( $request->all());
             $request->validate([
-                "name"=> ["required","min:3"],
-                "post"=>["required","min:5"],
+                "name"=> ["required","min:3","unique:posts"],
+                "post"=>["required","max:255"],
             ]);
             $post=new Post();
             $post->title=$request->name;
