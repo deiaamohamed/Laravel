@@ -1,3 +1,7 @@
+@extends('sharedlayout.app')
+@section('content')
+
+
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 <form action="/posts" method="POST" class="p-8 space-y-4 max-w-md">
@@ -23,3 +27,4 @@
         Update Post
     </button>
 </form>
+@endsection

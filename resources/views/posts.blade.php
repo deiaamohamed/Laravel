@@ -1,3 +1,7 @@
+@extends('sharedlayout.app')
+@section('content')
+
+
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <article class="border-2 border-black bg-white shadow-[4px_4px_0_0,8px_8px_0_0]">
   <div class="bg-yellow-300 p-3">
@@ -38,3 +42,4 @@
 </div>
   </div>
 </article>
+@endsection

@@ -14,3 +14,6 @@ Route::post('/posts', [Postcontroller::class,'store']);
 Route::get('/posts/edit/{id}', [Postcontroller::class,'edit']);
 Route::put('/posts', [Postcontroller::class,'update']);
 Route::delete('/posts/{id}', [Postcontroller::class,'destroy']);
+Route::get('/',function(){
+    return view('sharedlayout.app');
+});
