@@ -37,6 +37,11 @@ class Postcontroller extends Controller
             $post->title=$request->name;
             $post->post= $request->post;
             $post->user_id=Auth::id();
+
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('posts', 'public');
+                 $post->image = $path;
+                }
              $post->save();
             return redirect('/posts');
         }
