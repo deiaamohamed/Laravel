@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\alert;
 
 class Postcontroller extends Controller
@@ -30,13 +30,13 @@ class Postcontroller extends Controller
     public function store(request $request){
             //dd( $request->all());
             $request->validate([
-                "name"=> ["required","min:3","unique:posts"],
+                "name"=> ["required","min:3","unique:posts,title"],
                 "post"=>["required","max:255"],
             ]);
             $post=new Post();
             $post->title=$request->name;
             $post->post= $request->post;
-            $post->user_id=$request->u_id;
+            $post->user_id=Auth::id();
              $post->save();
             return redirect('/posts');
         }
