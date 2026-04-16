@@ -1,8 +1,5 @@
-@extends('sharedlayout.app')
-@section('content')
-
-
-@foreach ($posts as $post )
+<x-app-layout>
+    @foreach ($posts as $post )
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <article class="border-2 border-black bg-white shadow-[4px_4px_0_0,8px_8px_0_0]">
   <div class="bg-yellow-300 p-3">
@@ -66,4 +63,5 @@
     </a>
     <br><br>
     {{ $posts->links() }}
-    @endsection
+    </x-app-layout>
+
